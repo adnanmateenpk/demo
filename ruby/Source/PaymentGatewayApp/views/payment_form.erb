@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Payment Gatway</title>
+    
+  </head>
+  <body>
+	<% if @error %>
+		  <div id="errorExplanation">
+		    Card Rejected Please Enter Your details Again
+		  </div>
+	<% end %>
+    <div class="product index">
+      <div>Please Fill Out the Details for Payment of Order No : <%= @request["order_no"] %></div>
+
+      <div class="product new">
+	  <h2>Update Product</h2>
+	  <form action="/pay" method="post">
+	  	<table summary="pay form fields">
+		  <tr>
+		    <th><label for="name">Name</label></th>
+		    <td><input type="input" name="name" id="name" value=""></td>
+		  </tr>
+		  <tr>
+		    <th><label >Card No</label></th>
+		    <td><input type="input" name="card" id="card" value=""></td>
+		  </tr>
+		  <tr>
+		    <th><label for="">Security Code</label></th>
+		    <td><input type="input" name="code" id="code" value=""></td>
+		  </tr>
+		<tr>
+		    <th><label for="">Expiry Date</label></th>
+		    <td><select name="month">
+		    	<% (1..12).each do |i| %>
+		    	<option value="<%= i %>" ><%= i %></option>
+		    	<% end %>
+		    </select>
+		    <select name="year">
+		    	<% (2014..2050).each do |i| %>
+		    	<option value="<%= i %>" ><%= i %></option>
+		    	<% end %>
+		    </select>
+		    </td>
+		</tr>
+		</table>
+	    <div class="form-buttons">
+
+	    <input type="hidden" name="order_id" id="order_id" value="<%= @request["order_id"] %>">
+	    <input type="hidden" name="order_no" id="order_no" value="<%= @request["order_no"] %>">
+	     <input type="submit" value="Pay">
+	    </div>
+		</form>
+	</div>
+    </div>
+
+  </body>
+</html>

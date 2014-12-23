@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ECOM - Orders List</title>
+    
+  </head>
+  <body>
+  	<% if @flash %>
+  		<div><%= @flash %></div>
+  	<% end %>
+    <h2>Orders List</h2>
+     <a href="/">Main Menu</a><br/>
+    <% if session["current_order_id"] %>
+      <a href="/order/<%= session["current_order_id"] %>">Shopping Cart </a><br/>
+    <% end %>
+    <a href="/logout">logout </a><br/>
+	<table class="listing" summary="Admin users list">
+	  <tr>
+      <th>Order Number</th>
+      <th>Price</th>
+      <th>Created On</th>
+      <th>Order Status</th>
+      </tr>
+	  <% @orders.each do |order| %>
+  <tr>
+      <td><%= order.order_no %></td>
+      <td>$<%= order.total %></td>
+      <td><%=  Date.parse (order.date).to_time.strftime("%Y-%m-%d") %></td>
+      <% if order.completed %>
+      <td>Payment Done</td>
+      <% else %>
+      <td>Payment Pending</td>
+      <% end %>
+   		</tr>
+   		<% end %>
+    </table>
+	
+	</div>
+    </div>
+
+  </body>
+</html>

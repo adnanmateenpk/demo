@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ECOM - Product Details</title>
+    
+  </head>
+  <body>
+    <div class="product index">
+      <div class="product new">
+	  <h2>Product Details</h2>
+	  <% if session['current_order_id'] %>
+	  	<form action="/order/<%= session['current_order_id'] %>" method="post">
+	  	<input type="hidden" name="_method" value="patch" />
+	  <% else %>	
+	  	<form action="/order" method="post">
+	  <% end %>
+	  	<table summary="product form fields">
+		  <tr>
+		    <th><label >Name</label></th>
+		    <td><%= @product.name %></td>
+		  </tr>
+		  <tr>
+		    <th><label >Price</label></th>
+		    <td><%= @product.price %></td>
+		  </tr>
+		  <tr>
+		  <th><label for="description">Description</label></th>
+		    <td><%= @product.description %></td>
+		  </tr>
+		  <tr>
+		    <th><label >Quantity</label></th>
+		    <td><input type="input" name="quantity" value="" />default value for this field will be stored as 1</td>
+		  </tr>
+		</table>
+	    <div class="form-buttons">	
+	    <input type="hidden" name="product_id" value="<%= @product.id %>" />
+	   	<input type="hidden" name="price" value="<%= @product.price %>" />
+	    <input type="submit" value="Add to Cart">
+	    </div>
+		</form>
+	</div>
+    </div>
+
+  </body>
+</html>

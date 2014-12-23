@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ECOM - Delete Product</title>
+    
+  </head>
+  <body>
+    <div class="product index">
+      	<% if @product && @product.errors.size > 0 %>
+		  <div id="errorExplanation">
+		    <h2><%= @product.errors.size%> error(s) prohibited this record from being saved</h2>
+		    <p>There were problems with the following fields:</p>
+		    <ul>
+		    <% @product.errors.full_messages.each do |msg| %>
+		      <li><%= msg %></li>
+		    <% end %>
+		    </ul>
+		  </div>
+		<% end %>
+      <div class="product new">
+	  <h2>Delete Product</h2>
+	  <form action="/admin/product/<%= @product.id %>" method="post">
+	  	<input type="hidden" name="_method" value="delete" />
+	  	<p>Are you sure you want to delete this product?</p>
+	    <div class="form-buttons">
+	    <input type="submit" value="delete">
+	    </div>
+		</form>
+	</div>
+    </div>
+
+  </body>
+</html>

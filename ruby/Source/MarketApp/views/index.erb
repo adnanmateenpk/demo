@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ECOM</title>
+    
+  </head>
+  <body>
+  	<% if @flash %>
+  		<div><%= @flash %></div>
+  	<% end %>
+    <a href="/admin"> Admin Area</a><br/>
+    <% if session['logged_in'] %>
+      <div class="home">
+        <a href="/market"> Place An Order</a><br/>
+        <a href="/orders">Previous Orders </a><br/>
+        <a href="/logout">logout </a><br/>
+      </div>
+    <% else %>
+      <div class="home">
+        <a href="/customer"> Sign Up</a><br/>
+        <a href="/login"> Log In</a><br/>
+
+      </div>
+    <% end %>
+
+  </body>
+</html>

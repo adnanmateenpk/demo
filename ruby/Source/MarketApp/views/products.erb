@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ECOM - Product List</title>
+    
+  </head>
+  <body>
+  	<% if @flash %>
+  		<div><%= @flash %></div>
+  	<% end %>
+    <h2>Product List</h2>
+     <a href="/admin/product"> Create New Product</a><br/>
+    <a href="/admin/logout">logout </a><br/>
+	<table class="listing" summary="Admin users list">
+	  <tr>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Status</th>
+      <th>Actions</th>
+      </tr>
+	  <% @products.each do |product| %>
+
+	 
+	  <tr >
+      <td><%= product.name %></td>
+      <td>$<%= product.price %></td>
+      <td><%= (product.status) %></td>
+      <td class="actions">
+      	<a href="/admin/product/<%= product.id %>"> Edit </a> 
+        <a href="/admin/product/delete/<%= product.id %>"> Delete </a>
+      </td>
+   		</tr>
+   		<% end %>
+    </table>
+	
+	</div>
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ECOM - Customer Log In</title>
+    
+  </head>
+  <body>
+    <div class="customer index">
+      <h2>Log In</h2>
+      <% if @flash %>
+  		<div><%= @flash %></div>
+  		<% end %>
+      <div>Please Log In With Your Credentials</div>
+      <div class="user new">
+	  <h2>Customer Login</h2>
+	  <form action="/authenticate" method="get">
+	    <table summary="customer form fields">
+		  <tr>
+		    <th><label for="email">Email</label></th>
+		    <td><input type="input" name="email" id="email" value="<%= @username %>"></td>
+		  </tr>
+		  <tr>
+		    <th><label for="password">Password</label></th>
+		    <td><input type="password" name="password" id="password" value="<%= @password %>"></td>
+		  </tr>
+		</table>
+	    <div class="form-buttons">
+	      <input type="submit" value="Log In">
+	    </div>
+		</form>
+	</div>
+    </div>
+
+  </body>
+</html>

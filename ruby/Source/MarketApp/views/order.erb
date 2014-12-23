@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ECOM - Order Details</title>
+    
+  </head>
+  <body>
+    <div class="product index">
+      <div class="product new">
+	  <h2>Order Details</h2>
+	  	<% if @flash %>
+  		<div><%= @flash %></div>
+  		<% end %>
+	   	<form action="http://localhost:2345/payment" method="post">
+	  
+	  	<table summary="product form fields">
+		  <tr>
+		    <th><label >Order No</label></th>
+		    <td><%= @order.order_no %></td>
+		  </tr>
+		  <tr>
+		    <th><label >Total Price </label></th>
+		    <td>$<%= @order.total %></td>
+		  </tr>
+		  <tr>
+		  <th><label for="description">Created On</label></th>
+		    <td><%= @order.date %></td>
+		  </tr>
+		  
+		</table>
+		<table class="listing" summary="Admin users list">
+		  <tr>
+	      <th>Product</th>
+	      <th>Unit Price</th>
+	      <th>Quantity</th>
+	      <th>Total Price</th>
+	      <th>Actions</th>
+	      </tr>
+		  <% @order.order_lines.each do |order_line| %>
+		  <tr >
+		  <% product = 	order_line.product %>
+	      <td><%= product.name %></td>
+	      <td>$<%= order_line.unit_price %></td>
+	      <td><%= order_line.quantity %></td>
+	      <td ><%= order_line.total_price %></td>
+	      <td><a href="/orderline/delete/<%= order_line.id %>"> Delete Entery</a></td>
+	   		</tr>
+   		<% end %>
+    </table>
+	    <div class="form-buttons">	
+	   	<input type="hidden" name="order_id" id="order_id" value='<%= @order.id %>'>
+	   	<input type="hidden" name="order_no" id="order_no" value='<%= @order.order_no %>'>
+	    <input type="submit" value="Checkout"><a href= "/market" >Continue Shopping</a>
+	    </div>
+		</form>
+	</div>
+    </div>
+
+  </body>
+</html>
